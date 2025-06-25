@@ -37,10 +37,10 @@ To synthesize programs directly using a pre-built function database, run:
 This generates a synthesized program in ``./tmp`` using 10 iterations.   
 
 Full Workflow: From Code Generation to Fuzzing
-==============================================
+----------------------------------------------
 
 Phase 1: Offline Code Database Construction
--------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Step 1: Real Code-aligned Generation with LLMs**
 
@@ -115,7 +115,7 @@ Profile the functions:
 At this point, you have a fully profiled function database.
 
 Phase 2: Online Iterative Program Synthesis
--------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 With a profiled database (e.g., ``profiler/functions_profiled.json``), run:
 
@@ -137,7 +137,7 @@ Parameters explanation:
     --debug                  Print debug information.
 
 Fuzzing Execution
------------------
+~~~~~~~~~~~~~~~~~
 
 Configure the compiler settings by copying the example file:
 

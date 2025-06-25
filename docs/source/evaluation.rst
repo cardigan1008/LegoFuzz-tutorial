@@ -75,7 +75,7 @@ We also include all bug-triggering testcases in `/artifact/bugs/testcases`. You 
 
   $ tree /artifact/bugs/testcases
 
-In each bug directory, ``"orig.c"`` is the seed program, ``"case.c"`` is Creal-produced program, ``"reduced.c"`` is the reduced bug-triggering test program, and ``"removed.c"`` is the reduced ``"case.c"`` by removing unnecessary functions. For some bugs, the filenames maybe a bit different but you should be able to know their purposes from the filenames.
+In each bug directory, ``"orig.c"`` is the seed program, ``"case.c"`` is LegoFuzz-produced program, ``"reduced.c"`` is the reduced bug-triggering test program, and ``"removed.c"`` is the reduced ``"case.c"`` by removing unnecessary functions. For some bugs, the filenames maybe a bit different but you should be able to know their purposes from the filenames.
 
 Below we provide a set of scripts to extract information from `/artifact/bugs/bug_stat.json`.
 
@@ -195,4 +195,4 @@ To generate Figure 13 and Figure 14, running:
 Congratulations! You have successfully finished all the main experiments.
 ~~~~~~~~~~~~~~~~~~~~
 
-**If you want to use Creal to generate new programs, goto** :doc:`/legofuzz`
+**If you want to use LegoFuzz to generate new programs, goto** :doc:`/legofuzz`

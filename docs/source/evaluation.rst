@@ -42,12 +42,12 @@ Launch the docker container:
 Experimental Setup (Section 5.1)
 ------------
 
-In the paper, we claimed that ``"we collected a function database of 51,356 functions"``
-and we showed the statistics in Figure 8.
+In the paper, we claimed that ``"we collected a function database of 553,246 functions"``
+and we showed the statistics in Figure 9.
 
 The function database is located in `/artifact/database/functions.json`.
 You can check their contents.
-We provide a script to calculate the size of this database and produce the Figure 8. Simply run:
+We provide a script to calculate the size of this database and produce the Figure 9. Simply run:
 
 .. code-block:: console
 
@@ -137,42 +137,14 @@ You can reproduce these two tables by running:
 
 This script will extract the buggy commits of each bug from ``bug_stat.json`` and then check the affected components by querying the compiler repositories in ``"/compiler/repo/"``.
 
-Bug Characteristics (Section 5.3)
+Code Coverage (Section 5.3, 5.4, and 5.5)
 ------------
 
-We show the number of inserted functions in each bug-triggering testcases in Figure 10.
-You can reproduce Figure 10 by running the following script, which analyzes each ``removed.c`` in each bug testcase `/artifact/bugs/testcases`
-
-.. code-block:: console
-
-  $ cd /artifact/characteristics/
-  $ ./num_inserted.py
-
-This script will also print the data, which is consistent to the produced figure ``figure_num_inserted_functions.png``.
-
-For the unique features in bug-triggering functions, we did manual analysis on each ``removed.c``.
-
-
-Code Coverage (Section 5.4, 5.5, and 5.6)
-------------
-
-In Sections 5.4, 5.5, and 5.6, we reported the code coverage of different approaches in Table 5 and Figure 11.
+In Sections 5.3, 5.4, and 5.5, we reported the code coverage of different approaches in Table 5 and Figure 12.
 We here provide scripts to reproduce these data.
 
-In the paper, all approaches ``Creal``, ``Creal-1/4``, ``Creal-1/2``, ``Creal-Csmith``, and ``Hermes`` are generating 10 mutants from 1000 seed programs.
+In the paper, all approaches ``Lego``, ``Lego-Seeds``, ``Lego-Functions``, ``Lego-1/4``, ``Lego-1/2``, ``Fuzz4All``, ``WhiteFox``, ``GPT-3.5`` and ``Qwen`` are generating 10,000 programs. 
 This results in 10,000 programs for each of the approaches.
-
-The 1000 seeds are located in ``"/artifact/coverage/seeds_csmith_full"``.
-Fully reproduce the coverage using 1000 seeds requires >= 17 hours on a 64-core machine.
-
-To reduce the evaluation time, we prodive a small set of seeds (100) for quickly validating the results (~3 hours).
-This small set of seeds are in ``"/artifact/coverage/seeds_csmith_small"``.
-
-It is upto you to select which seeds for evaluation. 
-Using full seed set can reproduce data in the paper while requiring more than 10 hours of evaluation.
-Using small seed set can still get the key message as in the paper, **i.e., Creal achieves the highest coverage**.
-
-**We now assume that you are using the small seed set. First, generate mutant programs with each approach:**
 
 .. code-block:: console
 
@@ -197,32 +169,27 @@ The generated mutants will be saved into ``"/artifact/coverage/mutants/"``.
 This script will compile the mutant programs with GCC and LLVM, then analyze the compiler coverage.
 The result coverage json files will be saved into ``"/artifact/coverage/coverage_report/"``.
 
-**Third, produce Table 5 and Figure 11 by running:**
+**Third, produce Figure 12 by running:**
 
 .. code-block:: console
 
-  $ ./generate_coverage_table.py
   $ ./generate_figure_cov.py
 
-The coverage table and data will be printed out. 
-Because we do not use the full set for evaluation, the resulying figures in the table will be different from the paper.
-However, you're expected to observe that **Creal achieves the highest coverage**.
-
-You can also use the full set for evaluation, but due to randomness, number differences (< 5%) are expected.
+The coverage data will be printed out. 
+You're expected to observe that **LegoFuzz achieves the highest coverage**.
 
 
-Generation Speed (Section 5.4)
+Iteration Number (Section 5.6)
 ------------
 
-In Section 5.4, we claimed that Creal can produce mutants in a speed of ``"an average of 0.87 seconds per mutant"``.
-To verify that, running:
+In Section 5.6, we claimed that iteration number can affect the generation of LegoFuzz.
+To generate Figure 13 and Figure 14, running:
 
 .. code-block:: console
 
-  $ cd /artifact/speed
-  $ ./generate_creal_mutants.py
-
-This script will use a single core and invoke Creal to generate 10 mutants on each program in ``"/artifact/speed/seeds/"``.
+  $ cd /artifact/iteration
+  $ ./generate_fig_iter_loc.py
+  $ ./generate_fig_iter.py
 
 
 Congratulations! You have successfully finished all the main experiments.

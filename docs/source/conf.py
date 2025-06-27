@@ -37,5 +37,4 @@ epub_show_urls = 'footnote'
 latex_elements = {
     'classoptions': ',oneside',  # Add other options here as needed, separated by commas
     'babel': '\\usepackage[english]{babel}',
-    'pointsize': '12pt', 
 }

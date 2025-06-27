@@ -137,6 +137,8 @@ You can reproduce these two tables by running:
 
 This script will extract the buggy commits of each bug from ``bug_stat.json`` and then check the affected components by querying the compiler repositories in ``"/compiler/repo/"``.
 
+You're expected to see Loop Transformations and Peephole Optimizations are among the top, **demonstrating Claim 1**.
+
 Code Coverage (Section 5.3, 5.4, 5.5 and 5.6)
 ------------
 
@@ -214,7 +216,8 @@ The result coverage json files will be saved into ``"/artifact/coverage/coverage
   $ ./generate_figure_cov.py
 
 The coverage data will be printed out and the figure ``"fig_line_cov.png"`` will be generated. 
-You're expected to observe that **LegoFuzz achieves the highest coverage**. 
+You're expected to observe that **LegoFuzz achieves the highest coverage**, **demonstrating Claim 2**.
+Also, you're expected to see the increase from Lego-1_4 to Lego-1_2,  **demonstrating Claim 4**. 
 
 
 Iteration Number (Section 5.6)

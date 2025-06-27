@@ -8,11 +8,10 @@ This is the documentation for the LegoFuzz OOPSLA'25 Artifact. It includes the s
 
 The main claims supported by this artifact are: 
 
-1. (Sec 3.1.2) These individual functions alone cannot detect compiler bugs. 
-2. (Sec 5.2) In both GCC and LLVM, many of the bugs are related to loop transformations and peephole optimizations, which is consistent with findings from prior empirical studies. 
-3. (Sec 5.3) ...indicating that iterative synthesis plays a crucial role in generating more complex programs that engage a wider range of compiler features.
-4. (Sec 5.3) This high efficiency indicates that program generation is not a bottleneck of LegoFuzz.
-5. (Sec 5.4) ...indicating that a larger code database provides more diverse features
+1. (Sec 5.2) In both GCC and LLVM, many of the bugs are related to loop transformations and peephole optimizations, which is consistent with findings from prior empirical studies. 
+2. (Sec 5.3) ...indicating that iterative synthesis plays a crucial role in generating more complex programs that engage a wider range of compiler features.
+3. (Sec 5.3) This high efficiency indicates that program generation is not a bottleneck of LegoFuzz.
+4. (Sec 5.4) ...indicating that a larger code database provides more diverse features
 
 The experimental results are presented in Section 5, along with Tables 1–5 and Figures 9, 11–14.
 

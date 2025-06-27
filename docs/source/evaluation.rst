@@ -148,23 +148,52 @@ This results in 10,000 programs for each of the approaches, except for ``Lego-Se
 
 We provide three evaluation modes:
 
-1. **Use cached results**  
-   This mode allows for fast reproduction of coverage data, figures, and tables using pre-generated outputs.  
-   It takes approximately **5 hours** to complete.
+1. **Direct Reproduction (fastest)**:
 
-2. **Regenerate all mutants**  
-   This mode re-runs the entire generation pipeline from scratch before evaluation.
+Original results are available in "/artifact/coverage/mutants-orig" and "/artifact/coverage/coverage_report-orig".
+You can directly use these to reproduce the results and figures without re-running the pipeline.
 
-It is upto you to select which modes for evaluation. The second mode can reproduce data in the paper while requiring more than 10 hours of evaluation. 
-The first mode can still get the key message as in the paper, **i.e., LegoFuzz achieves the highest coverage**. 
-All cached results are stored in ``"/artifact/coverage/mutants-orig"``. 
+2. **Small-Scale Reproduction**:
 
-For the second mode, generate mutants by running:
+The full evaluation can take over 15 hours to complete. This mode runs at 1/10 scale—for example, generating 1,000 LegoFuzz programs instead of 10,000.
+While minor differences from the paper's results may appear due to scale, the core insights remain consistent.
+This mode typically takes around 5 hours.
+
+3. **Full Reproduction**:
+
+This mode re-executes the entire generation pipeline from scratch and replicates the original experimental setup in full.
+
+You may choose any of these modes based on your time and resource constraints. 
+
+Direct Reproduction
+~~~~~~~~~~~~~~~~~~~
+
+We have included all the original mutants in ``"/artifact/coverage/mutants-orig"`` and the original coverage data in ``"/artifact/coverage/coverage_report-orig"``.
+You can check them out for evaluation. 
+
+**Generate Figure 12 by running:**
+
+.. code-block:: console
+
+  $ ./generate_figure_cov.py
+
+The coverage data will be printed out and the figure ``"fig_line_cov.png"`` will be generated. 
+You're expected to observe that **LegoFuzz achieves the highest coverage**, **demonstrating Claim 2**.
+Also, you're expected to see the increase from Lego-1_4 to Lego-1_2,  **demonstrating Claim 4**. 
+
+Small-Scale Reproduction and Full Reproduction
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The only difference between these two modes is the option ``"--small"``, which enables Small-Scale Reproduction.
+
+**We now assume that you are in the Small-Scale Reproduction stage.**
+
+First, generate mutant programs with each approach:
 
 .. code-block:: console
 
   $ cd /artifact/coverage
-  $ ./generate_all_mutants.py --cpu 64  # ~4-5 hours.
+  $ ./generate_all_mutants.py --cpu 64 --small # < 1 hour.
 
 The results will be stored in ``"/artifact/coverage/mutants"``. 
 
@@ -184,16 +213,13 @@ The results will be stored in ``"/artifact/coverage/mutants"``.
    You can verify this by comparing ``c_std_eval_for_legofuzz.yaml`` with ``c_std.yaml``.
 
    For both tools, we provide **cached results** and **complete log files** generated during execution.  
-   You can find them under ``"/artifact/coverage/mutants-orig"`` and ``/artifact/generators/``. 
+   You can find them under ``"/artifact/coverage/mutants-orig"`` and ``/artifact/generators/logs``. 
 
-**We now assume you followed the first mode**. If you have just finished the seond mode and want to analyze coverage or generate figures for them, just simply add ``--new`` after the command. 
-For example, change ``./analyze_all_coverage.py --cpu 64`` to ``./analyze_all_coverage.py --cpu 64 --new``. 
-
-**First, get code coverage by running:**
+**Second, get code coverage by running:**
 
 .. code-block:: console
 
-  $ ./analyze_all_coverage.py --cpu 64  # ~4-5 hours. 
+  $ ./analyze_all_coverage.py --cpu 64 --new  # ~4-5 hours. 
 
 .. note::
 
@@ -202,21 +228,37 @@ For example, change ``./analyze_all_coverage.py --cpu 64`` to ``./analyze_all_co
 This script will compile the mutant programs with GCC and LLVM, then analyze the compiler coverage.
 The result coverage json files will be saved into ``"/artifact/coverage/coverage_report/"``. 
 
-.. note::
-
-   We also provide the original coverage results in ``"/artifact/coverage/coverage_report-orig/"``. 
-   You can directly check them out. 
-
 **Third, produce Figure 12 by running:**
 
 .. code-block:: console
 
-  $ ./generate_figure_cov.py
+  $ ./generate_figure_cov.py --new
 
 The coverage data will be printed out and the figure ``"fig_line_cov.png"`` will be generated. 
+you can get a rough sense about this figure in the terminal by running:
+
+.. code-block:: console
+
+  $ chafa fig_line_cov.png
+
+If you want to view the figure clearly, you can copy it to your host machine by using `docker cp <https://docs.docker.com/reference/cli/docker/container/cp/>`_ command.
+
 You're expected to observe that **LegoFuzz achieves the highest coverage**, **demonstrating Claim 2**.
 Also, you're expected to see the increase from Lego-1_4 to Lego-1_2,  **demonstrating Claim 4**. 
 
+
+Generation Speed (Section 5.3 and Section 5.7)
+------------
+
+In Section 5.4, we claimed that LegoFuzz can produce mutants in a speed of "an average of 0.02 seconds per mutant". To verify that, running:
+
+.. code-block:: console
+
+  $ cd /artifact/speed
+  $ ./generate_lego_mutants.py
+
+This script will use a single core and invoke LegoFuzz to generate 10,000 mutants to ``"/artifact/speed/mutants/"``.
+Total number of mutants, total time and calculated average time will be print out, **demonstrating Claim 3**.
 
 Iteration Number (Section 5.6)
 ------------
@@ -227,9 +269,22 @@ To generate Figure 13 and Figure 14, running:
 .. code-block:: console
 
   $ cd /artifact/iteration
-  $ ./generate_fig_iter_loc.py
-  $ ./generate_fig_iter.py
+  $ ./generate_fig_iter_loc.py 
+  $ ./generate_fig_iter.py 
 
+.. note::
+  The above commands use our original results to draw figures.
+  If you want to use your own generated results from Small-Scale Reproduction or Full Reproduction, add ``"--new"`` like ``"./generate_fig_iter_loc.py --new"``.
+
+This script will save the figure into ``"fig_iter_trend.png"`` and ``"fig_iter.png"`` , which should be consistent with Figure 13 and Figure 14.
+Again, you can get a rough sense about this figure in the terminal by running:
+
+.. code-block:: console
+
+  $ chafa fig_iter_trend.png
+  $ chafa fig_iter.png
+
+If you want to view the figure clearly, you can copy it to your host machine by using `docker cp <https://docs.docker.com/reference/cli/docker/container/cp/>`_ command.
 
 Congratulations! You have successfully finished all the main experiments.
 ~~~~~~~~~~~~~~~~~~~~

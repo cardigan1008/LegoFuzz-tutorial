@@ -1,4 +1,4 @@
-Run the tool: LegoFuzz
+Reusability Guide: Run the tool-LegoFuzz
 ========
 
 **LegoFuzz** is an LLM-based fuzzing framework. It currently supports testing C compilers, such as GCC and LLVM.

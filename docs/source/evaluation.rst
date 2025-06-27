@@ -27,9 +27,7 @@ Launch the docker container:
 
    To leave the job running in the background:
 
-   - ``ctr`` + ``b``
-
-   - ``d``
+   - ``ctrl`` + ``d``
 
    To resume the session:
 
@@ -137,7 +135,7 @@ You can reproduce these two tables by running:
 
 This script will extract the buggy commits of each bug from ``bug_stat.json`` and then check the affected components by querying the compiler repositories in ``"/compiler/repo/"``.
 
-You're expected to see Loop Transformations and Peephole Optimizations are among the top, **demonstrating Claim 1**.
+You're expected to see Loop Transformations and Peephole Optimizations are among the top ones, **demonstrating Claim 1**.
 
 Code Coverage (Section 5.3, 5.4, 5.5 and 5.6)
 ------------
@@ -146,7 +144,7 @@ In Sections 5.3, 5.4, 5.5 and 5.6, we reported the code coverage of different ap
 We here provide scripts to reproduce these data.
 
 In the paper, all approaches ``Lego``, ``Lego-Seeds``, ``Lego-Functions``, ``Lego-1/4``, ``Lego-1/2``, ``Lego-iter_10``, ``Lego-iter_50``, ``Lego-iter_100``, ``Lego-iter_150``, ``Lego-iter_200``, ``Fuzz4All``, ``WhiteFox``, ``GPT-3.5`` and ``Qwen`` are generating 10,000 programs. 
-This results in 10,000 programs for each of the approaches, except for Lego-Seeds, which includes 1,000 seed programs. These seeds are used to generate 10 mutants each in the Lego pipeline.
+This results in 10,000 programs for each of the approaches, except for ``Lego-Seeds``, which includes 1,000 seed programs. These seeds are used to generate 10 mutants each in the Lego pipeline.
 
 We provide three evaluation modes:
 
@@ -170,7 +168,7 @@ For the second mode, generate mutants by running:
 
 The results will be stored in ``"/artifact/coverage/mutants"``. 
 
-.. note::
+.. warning::
 
    This script does **not** generate mutants for Fuzz4All and WhiteFox, as running those tools require a GPU with **at least 48 GB** of memory to run.  
    However, we provide an OpenRouter API key to support reproduction, which is under ``"coverage/scripts/.env"``.
@@ -188,7 +186,7 @@ The results will be stored in ``"/artifact/coverage/mutants"``.
    For both tools, we provide **cached results** and **complete log files** generated during execution.  
    You can find them under ``"/artifact/coverage/mutants-orig"`` and ``/artifact/generators/``. 
 
-We now assume you followed the first mode. If you have just finished the first mode and want to analyze coverage or generate figures for them, just simply add ``--new`` after the command. 
+**We now assume you followed the first mode**. If you have just finished the seond mode and want to analyze coverage or generate figures for them, just simply add ``--new`` after the command. 
 For example, change ``./analyze_all_coverage.py --cpu 64`` to ``./analyze_all_coverage.py --cpu 64 --new``. 
 
 **First, get code coverage by running:**
@@ -199,7 +197,7 @@ For example, change ``./analyze_all_coverage.py --cpu 64`` to ``./analyze_all_co
 
 .. note::
 
-   With 64 cores (`"`--cpu 64"``), the script takes roughly 4 hours to finish.
+   With 64 cores (``"--cpu 64"``), the script takes roughly 4 hours to finish.
 
 This script will compile the mutant programs with GCC and LLVM, then analyze the compiler coverage.
 The result coverage json files will be saved into ``"/artifact/coverage/coverage_report/"``. 

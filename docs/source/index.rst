@@ -17,7 +17,7 @@ The experimental results are presented in Section 5, along with Tables 1–5 and
 
 All these claims and results are *fully reproduced* in :doc:`/evaluation`.
 
-For *reusability*, the core of this artifact is the LLM-based compiler testing tool LegoFuzz. :doc:`/legofuzz`` provides a quick start guide and complete instructions for using both the two-stage generation and fuzzing components.
+For *reusability*, the core of this artifact is the LLM-based compiler testing tool LegoFuzz. :doc:`/legofuzz` provides a quick start guide and complete instructions for using both the two-stage generation and fuzzing components.
 
 Hardware Dependencies
 ---------------

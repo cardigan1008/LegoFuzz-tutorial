@@ -3,10 +3,6 @@ Reusability Guide: Run the tool-LegoFuzz
 
 **LegoFuzz** is an LLM-based fuzzing framework. It currently supports testing C compilers, such as GCC and LLVM.
 
-> The core idea behind LegoFuzz is to separate the whole testing process into two phases: offline and online. The offline phase queries LLMs to collect valid code snippets, which enables us to control the quality of code as well as the cost for LLMs querying. In contrast, the online phase eliminates the dependency on LLMs by **reusing** these pre-generated code snippets. Through our proposed *iterative program synthesis*, the online phase constructs increasingly complex yet valid programs for executing testing.
-
-This project is partly based on `Creal <https://github.com/UniCodeSphere/Creal>`_.
-
 The sourcecode of Creal is located in ``/artifact/generators/LegoFuzz/``.
 Here is the detailed explanation of core files:
 

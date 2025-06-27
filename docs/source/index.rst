@@ -56,7 +56,7 @@ Then, execute the following command **in the container**:
 
 .. note::
 
-   The expected exeuction time should be less than 30 mins.
+   The expected exeuction time should be around 5 mins.
 
 If you see **Kick-the-tire passed!**, you are all set to go. 
 

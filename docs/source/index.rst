@@ -24,7 +24,7 @@ Hardware Dependencies
 
 The full evaluation of this artifact is **resource-intensive**. 
 
-We recommend to run the full evaluation on a machine with at least **32 cores, 64GB memory, and 100GB disk space** for a reasonable evaluation time (< 5 hours).
+We recommend to run the full evaluation on a machine with at least **32 cores, 64GB memory, and 150GB disk space** for a reasonable evaluation time (< 5 hours).
 
 For LegoFuzz, **no GPU is required**. A GPU is only needed if you wish to regenerate the baselines (Fuzz4All and WhiteFox) from scratch.
 

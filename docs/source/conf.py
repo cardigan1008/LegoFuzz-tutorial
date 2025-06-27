@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = 'LegoFuzz'
+project = 'LegoFuzz-OOPSLA2025-Artifact'
 copyright = '2025, Yunbo Ni'
 
 release = '1.0'

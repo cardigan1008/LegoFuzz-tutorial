@@ -4,6 +4,7 @@
 
 project = 'LegoFuzz-OOPSLA2025-Artifact'
 copyright = '2025, Yunbo Ni'
+author = 'Yunbo Ni'
 
 release = '1.0'
 version = '1.0.0'

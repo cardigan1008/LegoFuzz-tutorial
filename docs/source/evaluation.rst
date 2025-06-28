@@ -163,7 +163,9 @@ This mode typically takes around 5 hours.
 
 This mode re-executes the entire generation pipeline from scratch and replicates the original experimental setup in full.
 
+.. note::
 You may choose any of these modes based on your time and resource constraints. 
+We have provided an OpenRouter API key for artifact evaluation in ``"/artifact/coverage/scripts/.env"``.
 
 Direct Reproduction
 ~~~~~~~~~~~~~~~~~~~
@@ -175,6 +177,7 @@ You can check them out for evaluation.
 
 .. code-block:: console
 
+  $ cd /artifact/coverage
   $ ./generate_figure_cov.py
 
 The coverage data will be printed out and the figure ``"fig_line_cov.png"`` will be generated. 
